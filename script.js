@@ -18,7 +18,7 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
     html+=`<article class="result-card">
       <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>FULL TIME</span></div>
       <div class="scoreline">
-        <div class="team"><img src="assets/warriors-logo.jpeg" alt="Warriors FC crest"><strong>Warriors FC</strong></div>
+        <div class="team"><img src="assets/warriors-logo.png" alt="Warriors FC crest"><strong>Warriors FC</strong></div>
         <div class="score"><b>${latest.warriors}</b><span>—</span><b>${latest.opponentScore}</b><small>${long(latest.date)}${latest.venue?' • '+esc(latest.venue.toUpperCase()):''}</small></div>
         <div class="team"><div class="crest-placeholder">${esc(latest.opponent[0])}</div><strong>${esc(latest.opponent)}</strong></div>
       </div>
@@ -32,7 +32,7 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   for(const r of rows){
     if(r.type==='match'){
       const o=outcome(r);
-      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}</span><span class="res-score">${r.warriors}–${r.opponentScore}</span><span class="res-tag">${o}</span></li>`;
+      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}${r.scorers?`<small>⚽ ${r.scorers.map(esc).join(' • ')}</small>`:''}</span><span class="res-score">${r.warriors}–${r.opponentScore}</span><span class="res-tag">${o}</span></li>`;
     }else{
       html+=`<li class="res res-off"><span class="res-date">${short(r.date)}</span><span class="res-vs">${r.type==='bye'?'Bye week':'Games cancelled'}</span><span class="res-score">—</span><span class="res-tag">${r.type==='bye'?'BYE':'CXL'}</span></li>`;
     }
@@ -47,5 +47,5 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   if(!host||!data)return;
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const when=iso=>new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase();
-  host.innerHTML=[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(n=>`<article class="news-card"><div class="news-image"><img src="${esc(n.image||'assets/warriors-logo.jpeg')}" alt="${n.image?'':'Warriors FC crest'}"></div><div><p class="eyebrow">${esc(n.tag)} • ${when(n.date)}</p><h3>${esc(n.title)}</h3>${n.body.map(p=>`<p>${esc(p)}</p>`).join('')}${n.link?`<a href="${esc(n.link.href)}">${esc(n.link.text)} →</a>`:''}</div></article>`).join('');
+  host.innerHTML=[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(n=>`<article class="news-card"><div class="news-image"><img src="${esc(n.image||'assets/warriors-logo.png')}" alt="${n.image?'':'Warriors FC crest'}"></div><div><p class="eyebrow">${esc(n.tag)} • ${when(n.date)}</p><h3>${esc(n.title)}</h3>${n.body.map(p=>`<p>${esc(p)}</p>`).join('')}${n.link?`<a href="${esc(n.link.href)}">${esc(n.link.text)} →</a>`:''}</div></article>`).join('');
 })();
