@@ -18,7 +18,7 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
     html+=`<article class="result-card">
       <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>FULL TIME</span></div>
       <div class="scoreline">
-        <div class="team"><img src="assets/warriors-logo.png" alt="Warriors FC crest"><strong>Warriors FC</strong></div>
+        <div class="team"><img src="assets/warriors-logo.webp" alt="Warriors FC crest" width="90" height="90" loading="lazy" decoding="async"><strong>Warriors FC</strong></div>
         <div class="score"><b>${latest.warriors}</b><span>—</span><b>${latest.opponentScore}</b><small>${long(latest.date)}${latest.venue?' • '+esc(latest.venue.toUpperCase()):''}</small></div>
         <div class="team"><div class="crest-placeholder">${esc(latest.opponent[0])}</div><strong>${esc(latest.opponent)}</strong></div>
       </div>
@@ -47,5 +47,5 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   if(!host||!data)return;
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const when=iso=>new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase();
-  host.innerHTML=[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(n=>`<article class="news-card"><div class="news-image"><img src="${esc(n.image||'assets/warriors-logo.png')}" alt="${n.image?'':'Warriors FC crest'}"></div><div><p class="eyebrow">${esc(n.tag)} • ${when(n.date)}</p><h3>${esc(n.title)}</h3>${n.body.map(p=>`<p>${esc(p)}</p>`).join('')}${n.link?`<a href="${esc(n.link.href)}">${esc(n.link.text)} →</a>`:''}</div></article>`).join('');
+  host.innerHTML=[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(n=>`<article class="news-card"><div class="news-image"><img src="${esc(n.image||'assets/warriors-logo.webp')}" width="220" height="220" loading="lazy" decoding="async" alt="${n.image?'':'Warriors FC crest'}"></div><div><p class="eyebrow">${esc(n.tag)} • ${when(n.date)}</p><h3>${esc(n.title)}</h3>${n.body.map(p=>`<p>${esc(p)}</p>`).join('')}${n.link?`<a href="${esc(n.link.href)}">${esc(n.link.text)} →</a>`:''}</div></article>`).join('');
 })();

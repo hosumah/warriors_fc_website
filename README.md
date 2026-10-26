@@ -10,7 +10,11 @@ Static, mobile-first Warriors FC website prepared for Cloudflare Pages.
 5. Add a custom domain later if desired.
 
 ## Replace later
-- `assets/warriors-logo.png` (transparent background) with the final high-resolution crest.
+- `assets/warriors-logo.webp` (crest on a black disc, about 600px) and `assets/favicon.png` with the final high-resolution crest.
 - Add team photos to `assets/` and update image paths in `index.html`.
 - Replace placeholder squad/next-match content.
 - Replace the example contact email.
+
+## Image guidelines (keep the page fast)
+- Resize photos to about 1400px wide and save as WebP (quality ~78). Aim for under 200 KB each.
+- Add `width`, `height` and `loading="lazy"` to any image below the first screen.
