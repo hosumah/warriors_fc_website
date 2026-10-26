@@ -18,7 +18,7 @@ window.WFC_NEWS = [
       "The Warriors started strongly and took a 2–0 lead early on with two goals from Peter Gansallo, but Cheverly FC pulled a goal back before halftime. They came out strong again after the break and leveled the game at 2–2.",
       "The Warriors didn’t panic. The group dug deeper and found a third goal from Bryson Baker to go back in front, 3–2. Cheverly FC answered with an impressive strike from the right side to tie it again.",
       "In the final ten minutes the Warriors separated themselves. Adeayo Gbadehan scored the fourth and Jinmi Ismail added the fifth to seal the win.",
-      "Interim head coach Hakeem Osuman said: “This is one of the best games we have played. This group of guys are excellent. I can’t wait to see where they end up.”",
+      "Interim head coach Hakeem Osuman said: “While the result was excellent, we know there is still more to come. We created opportunities to make the scoreline even more convincing, and our focus remains on improving, staying humble, and building consistency. Warriors FC is a team in a rebuilding phase, but we believe firmly in what we are building. Our ambitions are clear and we are working to build momentum towards the playoffs while laying the foundations for sustained success.”",
       "Victory Through Harmony."
     ] }
 ];
