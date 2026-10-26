@@ -10,5 +10,7 @@ window.WFC_RESULTS = [
   { date: "2026-10-04", type: "match", opponent: "CF Pheonix", warriors: 3, opponentScore: 0,
     scorers: ["Lawan Usman", "Hugo Palomo Saldivar", "Tyler D’Anna"] },
   { date: "2026-10-11", type: "cancelled" },
-  { date: "2026-10-18", type: "match", opponent: "Real Pelayo", warriors: 0, opponentScore: 1 }
+  { date: "2026-10-18", type: "match", opponent: "Real Pelayo", warriors: 0, opponentScore: 1 },
+  { date: "2026-10-25", type: "match", opponent: "Cheverly FC", warriors: 5, opponentScore: 3,
+    scorers: ["Peter Gansallo ×2", "Bryson Baker", "Adeayo Gbadehan", "Jinmi Ismail"] }
 ];
