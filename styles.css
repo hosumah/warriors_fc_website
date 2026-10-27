@@ -20,7 +20,7 @@ a{color:inherit;text-decoration:none}
 .hero h1 em,.manifesto em{font-style:normal;color:var(--red)}
 .lede{font-size:18px;color:var(--muted);margin:30px 0}
 .actions{display:flex;align-items:center;gap:25px}
-.hero .actions{margin-top:30px}
+.hero .actions{margin-top:82px}
 .button{display:inline-block;background:var(--red);color:white;padding:15px 22px;text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:1.3px}
 .button.dark{background:var(--ink)}
 .text-link{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
