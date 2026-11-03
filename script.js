@@ -16,7 +16,7 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   if(latest){
     const o=outcome(latest);
     html+=`<article class="result-card">
-      <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>FULL TIME</span></div>
+      <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>${latest.forfeit?'AWARDED':'FULL TIME'}</span></div>
       <div class="scoreline">
         <div class="team"><img src="assets/warriors-logo.webp" alt="Warriors FC crest" width="90" height="90" loading="lazy" decoding="async"><strong>Warriors FC</strong></div>
         <div class="score"><b>${latest.warriors}</b><span>—</span><b>${latest.opponentScore}</b><small>${long(latest.date)}${latest.venue?' • '+esc(latest.venue.toUpperCase()):''}</small></div>
@@ -32,7 +32,7 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   for(const r of rows){
     if(r.type==='match'){
       const o=outcome(r);
-      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}${r.scorers?`<small>⚽ ${r.scorers.map(esc).join(' • ')}</small>`:''}</span><span class="res-score">${r.warriors}–${r.opponentScore}</span><span class="res-tag">${o}</span></li>`;
+      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}${r.scorers?`<small>⚽ ${r.scorers.map(esc).join(' • ')}</small>`:''}${r.forfeit?`<small>Win by forfeit — ${esc(r.opponent)} forfeited</small>`:''}</span><span class="res-score">${r.warriors}–${r.opponentScore}</span><span class="res-tag">${o}</span></li>`;
     }else{
       html+=`<li class="res res-off"><span class="res-date">${short(r.date)}</span><span class="res-vs">${r.type==='bye'?'Bye week':'Games cancelled'}</span><span class="res-score">—</span><span class="res-tag">${r.type==='bye'?'BYE':'CXL'}</span></li>`;
     }
