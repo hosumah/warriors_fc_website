@@ -20,5 +20,14 @@ window.WFC_NEWS = [
       "In the final ten minutes the Warriors separated themselves. Adeayo Gbadehan scored the fourth and Jinmi Ismail added the fifth to seal the win.",
       "Interim head coach Hakeem Osumah said: “While the result was excellent, we know there is still more to come. We created opportunities to make the scoreline even more convincing, and our focus remains on improving, staying humble, and building consistency. Warriors FC is a team in a rebuilding phase, but we believe firmly in what we are building. Our ambitions are clear and we are working to build momentum towards playoffs this fall while laying the foundations for sustained success.”",
       "Victory Through Harmony."
+    ] },
+  { date: "2026-11-08", tag: "Match Report", title: "Warriors FC run riot against Terebinth FC, 9–1.",
+    body: [
+      "Warriors FC put nine goals past Terebinth FC on Sunday in a 9–1 win.",
+      "It was Terebinth FC who struck first, scoring after a midfield mistake. They came out strong and gained confidence, but a few minutes later the Warriors settled into the game and equalized.",
+      "From there the gap in quality was clear. By halftime the Warriors were 5–1 up.",
+      "The second half continued with no mercy. The Warriors added four more goals to make it nine in total.",
+      "Adeayo Gbadehan led the way with a hat-trick. Jonathan Makmot and Precious Ozoh each scored twice, and Daviddi Mohoney and Micheal Ilodigwe also got on the scoresheet.",
+      "Victory Through Harmony."
     ] }
 ];

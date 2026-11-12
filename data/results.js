@@ -14,5 +14,7 @@ window.WFC_RESULTS = [
   { date: "2026-10-18", type: "match", opponent: "Real Pelayo", warriors: 0, opponentScore: 1 },
   { date: "2026-10-25", type: "match", opponent: "Cheverly FC", warriors: 5, opponentScore: 3,
     scorers: ["Peter Gansallo ×2", "Bryson Baker", "Adeayo Gbadehan", "Jinmi Ismail"] },
-  { date: "2026-11-01", type: "match", label: "Forfeit Win", forfeit: true, opponent: "Ittihad FC", warriors: 3, opponentScore: 0 }
+  { date: "2026-11-01", type: "match", label: "Forfeit Win", forfeit: true, opponent: "Ittihad FC", warriors: 3, opponentScore: 0 },
+  { date: "2026-11-08", type: "match", opponent: "Terebinth FC", warriors: 9, opponentScore: 1,
+    scorers: ["Adeayo Gbadehan ×3", "Jonathan Makmot ×2", "Precious Ozoh ×2", "Daviddi Mohoney", "Micheal Ilodigwe"] }
 ];
