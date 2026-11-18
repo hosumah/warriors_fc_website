@@ -49,3 +49,19 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   const when=iso=>new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase();
   host.innerHTML=[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(n=>`<article class="news-card"><div class="news-image"><img src="${esc(n.image||'assets/warriors-logo.webp')}" width="220" height="220" loading="lazy" decoding="async" alt="${n.image?'':'Warriors FC crest'}"></div><div><p class="eyebrow">${esc(n.tag)} • ${when(n.date)}</p><h3>${esc(n.title)}</h3>${n.body.map(p=>`<p>${esc(p)}</p>`).join('')}${n.link?`<a href="${esc(n.link.href)}">${esc(n.link.text)} →</a>`:''}</div></article>`).join('');
 })();
+
+(function renderNextMatch(){
+  const host=document.getElementById('next-match-info');
+  const data=window.WFC_FIXTURES;
+  if(!host||!data)return;
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  // Kickoff in US Eastern time (EST -05:00 from Nov to mid-March, EDT -04:00 otherwise).
+  const kickoff=f=>{const m=+f.date.slice(5,7),off=(m>=11||m<=2)?'-05:00':'-04:00';return new Date(`${f.date}T${f.time}:00${off}`)};
+  const now=Date.now();
+  const next=[...data].sort((a,b)=>kickoff(a)-kickoff(b)).find(f=>kickoff(f).getTime()+3*3600e3>now);
+  if(!next){host.innerHTML='<p class="eyebrow">NEXT MATCH</p><h3>Season complete</h3><p>Thanks for supporting Warriors FC this season.</p>';return}
+  const d=new Date(next.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+  const [h,mi]=next.time.split(':').map(Number);
+  const t=`${(h%12)||12}:${String(mi).padStart(2,'0')} ${h<12?'AM':'PM'}`;
+  host.innerHTML=`<p class="eyebrow">NEXT MATCH${next.game?' • GAME '+next.game:''}</p><h3>${esc(next.home)} vs ${esc(next.away)}</h3><p>${d} • ${t} • ${esc(next.venue==='TBD'?'Venue TBD':next.venue)}</p>`;
+})();
