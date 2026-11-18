@@ -55,13 +55,19 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   const data=window.WFC_FIXTURES;
   if(!host||!data)return;
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  // Kickoff in US Eastern time (EST -05:00 from Nov to mid-March, EDT -04:00 otherwise).
-  const kickoff=f=>{const m=+f.date.slice(5,7),off=(m>=11||m<=2)?'-05:00':'-04:00';return new Date(`${f.date}T${f.time}:00${off}`)};
+  // Kickoff in US Eastern time (EST -05:00 from Nov to Feb, EDT -04:00 otherwise).
+  const kickoff=f=>{const m=+f.date.slice(5,7),off=(m>=11||m<=2)?'-05:00':'-04:00';return new Date(`${f.date}T${f.time||'12:00'}:00${off}`)};
   const now=Date.now();
-  const next=[...data].sort((a,b)=>kickoff(a)-kickoff(b)).find(f=>kickoff(f).getTime()+3*3600e3>now);
-  if(!next){host.innerHTML='<p class="eyebrow">NEXT MATCH</p><h3>Season complete</h3><p>Thanks for supporting Warriors FC this season.</p>';return}
-  const d=new Date(next.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-  const [h,mi]=next.time.split(':').map(Number);
-  const t=`${(h%12)||12}:${String(mi).padStart(2,'0')} ${h<12?'AM':'PM'}`;
-  host.innerHTML=`<p class="eyebrow">NEXT MATCH${next.game?' • GAME '+next.game:''}</p><h3>${esc(next.home)} vs ${esc(next.away)}</h3><p>${d} • ${t} • ${esc(next.venue==='TBD'?'Venue TBD':next.venue)}</p>`;
+  const games=data.filter(f=>f.date&&f.type!=='bye').sort((a,b)=>kickoff(a)-kickoff(b));
+  const next=games.find(f=>kickoff(f).getTime()+3*3600e3>now);
+  if(next){
+    const d=new Date(next.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    const [h,mi]=next.time.split(':').map(Number);
+    const t=`${(h%12)||12}:${String(mi).padStart(2,'0')} ${h<12?'AM':'PM'}`;
+    host.innerHTML=`<p class="eyebrow">${esc((next.label||'Next Match').toUpperCase())}</p><h3>${esc(next.home)} vs ${esc(next.away)}</h3><p>${d} • ${t} • ${esc(next.venue==='TBD'?'Venue TBD':next.venue)}</p>`;
+    return;
+  }
+  const tbd=data.find(f=>!f.date);
+  if(tbd){host.innerHTML=`<p class="eyebrow">${esc((tbd.label||'Next Match').toUpperCase())}</p><h3>${esc(tbd.venue||'Venue TBD')}</h3><p>${esc(tbd.note||'Details coming soon')}</p>`;return}
+  host.innerHTML='<p class="eyebrow">NEXT MATCH</p><h3>Season complete</h3><p>Thanks for supporting Warriors FC this season.</p>';
 })();
