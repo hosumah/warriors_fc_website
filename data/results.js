@@ -1,5 +1,6 @@
 // Weekly results. Add a new entry at the bottom each week; the page sorts newest first.
 // type: "match" | "bye" | "cancelled"
+// note: text shown with an asterisk after the score (e.g. an abandoned game).
 // forfeit: true marks a win awarded when the opponent forfeits.
 // For matches, "warriors" is Warriors FC's score and "opponent" is the other team's score.
 window.WFC_RESULTS = [
@@ -16,5 +17,8 @@ window.WFC_RESULTS = [
     scorers: ["Peter Gansallo ×2", "Bryson Baker", "Adeayo Gbadehan", "Jinmi Ismail"] },
   { date: "2026-11-01", type: "match", label: "Forfeit Win", forfeit: true, opponent: "Ittihad FC", warriors: 3, opponentScore: 0 },
   { date: "2026-11-08", type: "match", opponent: "Terebinth FC", warriors: 9, opponentScore: 1,
-    scorers: ["Adeayo Gbadehan ×3", "Jonathan Makmot ×2", "Precious Ozoh ×2", "Daviddi Mohoney", "Micheal Ilodigwe"] }
+    scorers: ["Adeayo Gbadehan ×3", "Jonathan Makmot ×2", "Precious Ozoh ×2", "Daviddi Mohoney", "Micheal Ilodigwe"] },
+  { date: "2026-11-15", type: "match", opponent: "Motions FC", warriors: 3, opponentScore: 1,
+    note: "Game abandoned by Motions FC with 5 minutes remaining. Official result pending.",
+    scorers: ["Lawan Usman", "Adeayo Gbadehan", "Markel Deflorimonte"] }
 ];

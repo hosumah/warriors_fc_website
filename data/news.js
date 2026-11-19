@@ -29,5 +29,14 @@ window.WFC_NEWS = [
       "The second half continued with no mercy. The Warriors added four more goals to make it nine in total.",
       "Adeayo Gbadehan led the way with a hat-trick. Jonathan Makmot and Precious Ozoh each scored twice, and Daviddi Mohoney and Micheal Ilodigwe also got on the scoresheet.",
       "Victory Through Harmony."
+    ] },
+  { date: "2026-11-15", tag: "Match Report", title: "Warriors FC lead 3–1 as Motions FC abandon a stormy match.",
+    body: [
+      "Sunday’s game against Motions FC was a stormy one, with multiple red cards and a late penalty, and it ended with Motions FC abandoning the match.",
+      "Motions FC were reduced to ten men early on, when a player was sent off for stopping a clear goal-scoring chance by handling the ball outside the box. A few minutes later, Lawan Usman put the Warriors in front.",
+      "Motions FC then lost a second player, a defender shown two yellow cards for dissent, and were down to nine men. Even so, they pulled level before the break.",
+      "The Warriors came out in the second half and took control. Adeayo Gbadehan and Markel Deflorimonte each scored to put Warriors FC 3–1 up.",
+      "With five minutes remaining, the Warriors were awarded a penalty after a foul in the box. Motions FC then abandoned the game.",
+      "Victory Through Harmony."
     ] }
 ];

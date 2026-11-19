@@ -16,13 +16,14 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   if(latest){
     const o=outcome(latest);
     html+=`<article class="result-card">
-      <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>${latest.forfeit?'AWARDED':'FULL TIME'}</span></div>
+      <div class="result-meta"><span>${esc(latest.label||'LATEST RESULT')}</span><span>${latest.forfeit?'AWARDED':latest.note?'ABANDONED':'FULL TIME'}</span></div>
       <div class="scoreline">
         <div class="team"><img src="assets/warriors-logo.webp" alt="Warriors FC crest" width="90" height="90" loading="lazy" decoding="async"><strong>Warriors FC</strong></div>
-        <div class="score"><b>${latest.warriors}</b><span>—</span><b>${latest.opponentScore}</b><small>${long(latest.date)}${latest.venue?' • '+esc(latest.venue.toUpperCase()):''}</small></div>
+        <div class="score"><b>${latest.warriors}</b><span>—</span><b>${latest.opponentScore}${latest.note?'<sup>*</sup>':''}</b><small>${long(latest.date)}${latest.venue?' • '+esc(latest.venue.toUpperCase()):''}</small></div>
         <div class="team"><div class="crest-placeholder">${esc(latest.opponent[0])}</div><strong>${esc(latest.opponent)}</strong></div>
       </div>
       ${latest.scorers?`<div class="scorers">${latest.scorers.map(s=>`<span>⚽ ${esc(s)}</span>`).join('')}</div>`:''}
+      ${latest.note?`<p class="result-note">* ${esc(latest.note)}</p>`:''}
     </article>`;
     const w=matches.filter(m=>outcome(m)==='W').length,d=matches.filter(m=>outcome(m)==='D').length,l=matches.filter(m=>outcome(m)==='L').length;
     const gf=matches.reduce((n,m)=>n+m.warriors,0),ga=matches.reduce((n,m)=>n+m.opponentScore,0);
@@ -32,12 +33,29 @@ const menu=document.querySelector('.menu');const nav=document.querySelector('.si
   for(const r of rows){
     if(r.type==='match'){
       const o=outcome(r);
-      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}${r.scorers?`<small>⚽ ${r.scorers.map(esc).join(' • ')}</small>`:''}${r.forfeit?`<small>Win by forfeit — ${esc(r.opponent)} forfeited</small>`:''}</span><span class="res-score">${r.warriors}–${r.opponentScore}</span><span class="res-tag">${o}</span></li>`;
+      html+=`<li class="res res-${o}"><span class="res-date">${short(r.date)}</span><span class="res-vs">Warriors FC vs ${esc(r.opponent)}${r.scorers?`<small>⚽ ${r.scorers.map(esc).join(' • ')}</small>`:''}${r.note?`<small>* ${esc(r.note)}</small>`:''}${r.forfeit?`<small>Win by forfeit — ${esc(r.opponent)} forfeited</small>`:''}</span><span class="res-score">${r.warriors}–${r.opponentScore}${r.note?'*':''}</span><span class="res-tag">${o}</span></li>`;
     }else{
       html+=`<li class="res res-off"><span class="res-date">${short(r.date)}</span><span class="res-vs">${r.type==='bye'?'Bye week':'Games cancelled'}</span><span class="res-score">—</span><span class="res-tag">${r.type==='bye'?'BYE':'CXL'}</span></li>`;
     }
   }
   html+='</ul>';
+  const tally={};
+  for(const m of matches){for(const s of (m.scorers||[])){
+    const mm=s.match(/^(.*?)(?:\s*×\s*(\d+))?(?:\s*\(P\))?\s*$/);
+    const name=mm[1].trim(),n=mm[2]?+mm[2]:1;
+    tally[name]=(tally[name]||0)+n;
+  }}
+  const top=Object.entries(tally).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+  if(top.length){
+    const max=top[0][1];
+    html+='<h3 class="results-title" id="top-scorers">Top Goal Scorers</h3><ol class="scorer-list">';
+    let rank=0,prev=null;
+    top.forEach(([name,g],i)=>{
+      if(g!==prev){rank=i+1;prev=g}
+      html+=`<li><span class="sc-rank">${rank}</span><span class="sc-name">${esc(name)}</span><span class="sc-bar"><i style="width:${Math.round(g/max*100)}%"></i></span><span class="sc-goals">${g}</span></li>`;
+    });
+    html+='</ol>';
+  }
   host.innerHTML=html;
 })();
 
